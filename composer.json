@@ -21,6 +21,7 @@
         }
     },
     "require": {
-        "geometria-lab/rediska": "^0.5.10"
+        "geometria-lab/rediska": "^0.5.10",
+        "predis/predis": "^1.1"
     }
 }

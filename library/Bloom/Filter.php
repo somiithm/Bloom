@@ -54,7 +54,7 @@ class Filter
     /**
      * @var Rediska
      */
-    protected $rediska;
+    protected $redis;
 
     /**
      * @param array $options
@@ -126,7 +126,7 @@ class Filter
 //                }
 //            }
             $transaction = $this
-                ->getRediska()
+                ->getRedis()
                 ->pipeline();
             if(!$elements){
                 return false;
@@ -160,7 +160,7 @@ class Filter
     {
         $element     = (array)$element;
         $transaction = $this
-            ->getRediska()
+            ->getRedis()
             ->pipeline();
         foreach ($element as $el) {
             foreach ($this->getHash($el) as $offset) {
@@ -180,7 +180,7 @@ class Filter
     public function getNumberOfElements()
     {
         return (int)$this
-            ->getRediska()
+            ->getRedis()
             ->get($this->_options['keyprefix'] . self::KEY_BIT_COUNT);
     }
 
@@ -238,26 +238,26 @@ class Filter
      */
     public function getCount()
     {
-        return (int) $this->getRediska()
+        return (int) $this->getRedis()
             ->get($this->_options['keyprefix'] . self::KEY_BIT_COUNT);
     }
 
     /**
      * @return \Rediska
      */
-    public function getRediska()
+    public function getRedis()
     {
-        if(!$this->rediska instanceof \Rediska){
-            $this->rediska = new \Rediska();
+        if(!$this->redis instanceof \Predis\Client){
+            $this->redis = new \Predis\Client();
         }
-        return $this->rediska;
+        return $this->redis;
     }
 
     /**
-     * @param \Rediska $rediska
+     * @param \Rediska $redis
      */
-    public function setRediska(\Rediska $rediska)
+    public function setRedis(\Predis\Client $redis)
     {
-        $this->rediska = $rediska;
+        $this->redis = $redis;
     }
 }
