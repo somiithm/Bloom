@@ -21,6 +21,6 @@
         }
     },
     "require": {
-        "rediska/rediska": "dev-master"
+        "geometria-lab/rediska": "^0.5.10"
     }
 }
