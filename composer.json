@@ -21,6 +21,6 @@
         }
     },
     "require": {
-        "rediska/rediska": "master-dev"
+        "rediska/rediska": "dev-master"
     }
 }
